@@ -6,10 +6,14 @@
 package com.projet.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -23,6 +27,38 @@ public class Panier implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private double prixTTC;
+    
+    private Date dateCommande;
+    
+    @ManyToOne
+    public Client client;
+    
+    @ManyToMany
+    public Collection<ProduitDerive> lesProduits;
+    
+    @ManyToMany
+    public Collection<ProduitDansPanier> lesQte;
+
+    public Panier() {
+    }
+
+    public double getPrixTTC() {
+        return prixTTC;
+    }
+
+    public void setPrixTTC(double prixTTC) {
+        this.prixTTC = prixTTC;
+    }
+
+    public Date getDateCommande() {
+        return dateCommande;
+    }
+
+    public void setDateCommande(Date dateCommande) {
+        this.dateCommande = dateCommande;
+    }
+    
     public Long getId() {
         return id;
     }

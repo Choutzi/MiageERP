@@ -6,10 +6,12 @@
 package com.projet.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -22,6 +24,55 @@ public class ProduitDerive implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    private String type;
+    
+    private double prixHT;
+    
+    private int stock;
+    
+    private String description;
+    
+    @ManyToMany
+    public Collection<Panier> lesPaniers;
+    
+    @ManyToMany
+    public Collection<ProduitDansPanier> lesQte;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public double getPrixHT() {
+        return prixHT;
+    }
+
+    public void setPrixHT(double prixHT) {
+        this.prixHT = prixHT;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public ProduitDerive() {
+    }
 
     public Long getId() {
         return id;
